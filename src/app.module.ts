@@ -7,10 +7,19 @@ import { FollowersModule } from './followers/followers.module';
 import { CommentsModule } from './comments/comments.module';
 import { LikesModule } from './likes/likes.module';
 import { PostsModule } from './posts/posts.module';
-import { UsersModule } from './users/users.module';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { TypeOrmConfigService } from './database/typeorm-config';
 
 @Module({
-  imports: [UsersModule, PostsModule, LikesModule, CommentsModule, FollowersModule, AuthModule],
+  imports: [
+    TypeOrmModule.forRootAsync({useClass:TypeOrmConfigService}),
+    UsersModule,
+    PostsModule,
+    LikesModule,
+    CommentsModule,
+    FollowersModule,
+    AuthModule,
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
