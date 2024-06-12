@@ -9,6 +9,7 @@ import { UserRequestDto } from './dto/user-request.dto';
 @Injectable()
 export class UsersService {
 
+
  constructor(private userMapper: UserMapper, @InjectRepository(User) private userRepository: Repository<User>){
   
  }
@@ -39,4 +40,11 @@ export class UsersService {
   // remove(id: number) {
   //   return `This action removes a #${id} user`;
   // }
+
+  async findOneByEmail(email: string) {
+    return await this.userRepository.findOneBy({
+      email:email
+    })
+  }
+  
 }
