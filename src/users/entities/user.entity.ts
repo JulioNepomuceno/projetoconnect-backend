@@ -1,5 +1,6 @@
-import { BeforeInsert, Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import { BeforeInsert, Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 import * as bcrypt from 'bcrypt';
+import { Post } from 'src/posts/entities/post.entity';
 
 @Entity()
 export class User {
@@ -13,7 +14,7 @@ export class User {
   email: string;
 
   @Column({nullable:true, length:255})
-  fotoPerfil:string;
+  profilePhoto:string;
 
   @Column({ nullable: false, length:255 })
   password: string;
@@ -23,6 +24,10 @@ export class User {
 
   @UpdateDateColumn({type:'timestamp', default:()=>'CURRENT_TIMESTAMP(6)', onUpdate:'CURRENT_TIMESTAMP(6)'})
   updatedAt: Date;
+
+  @OneToMany(()=>Post, (post) =>post.user)
+  post:Post
+
 
   @BeforeInsert()
   async setPassword(password?:string){

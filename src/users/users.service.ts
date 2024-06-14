@@ -5,24 +5,19 @@ import { User } from './entities/user.entity';
 import { Repository } from 'typeorm';
 import { UserRequestDto } from './dto/user-request.dto';
 
-
 @Injectable()
 export class UsersService {
+  constructor(
+    private userMapper: UserMapper,
+    @InjectRepository(User) private userRepository: Repository<User>,
+  ) {}
 
+  async create(userRequestDto: UserRequestDto) {
+    const user = this.userMapper.toUserEntity(userRequestDto);
 
- constructor(private userMapper: UserMapper, @InjectRepository(User) private userRepository: Repository<User>){
-  
- }
-
-
- async create(userRequestDto: UserRequestDto) {
-
-    const user =  this.userMapper.toUserEntity(userRequestDto);
-  
     const user_save = await this.userRepository.save(user);
 
     return this.userMapper.toUserResponse(user_save);
-
   }
 
   // findAll() {
@@ -43,8 +38,7 @@ export class UsersService {
 
   async findOneByEmail(email: string) {
     return await this.userRepository.findOneBy({
-      email:email
-    })
+      email: email,
+    });
   }
-  
 }

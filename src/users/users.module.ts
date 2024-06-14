@@ -6,7 +6,7 @@ import { UserMapper } from './mappers/user.mapper';
 import { User } from './entities/user.entity';
 
 @Module({
-  imports:[TypeOrmModule.forFeature([UsersModule,User])],
+  imports:[TypeOrmModule.forFeature([User])],
   controllers: [UsersController],
   providers: [UsersService,UserMapper],
 })

@@ -1,16 +1,16 @@
 import { UserRequestDto } from '../dto/user-request.dto';
 import { UserResponseDto } from '../dto/user-response.dto';
 import { User } from '../entities/user.entity';
-import { UserMapperInterface } from './user.mapper-interface';
+import { UserMapperImplement } from './user.mapper-implement';
 
-export class UserMapper implements UserMapperInterface {
+export class UserMapper implements UserMapperImplement {
     toUserResponse(user: User): UserResponseDto {
         const userDto = new UserResponseDto();
         
         userDto.id_user = user.id_user
         userDto.name = user.name;
         userDto.email = user.email;
-        userDto.fotoPeril = user.fotoPerfil;
+        userDto.profilePhoto = user.profilePhoto;
         userDto.createdAt = user.createdAt;
         userDto.updatedAt = user.updatedAt;
         

@@ -17,10 +17,11 @@ export class AuthService {
     if(!user){
       throw new UnauthorizedException();
     }
-
-    if(await bcrypt.compare(password, user.password)){
+   
+    if (await bcrypt.compare(password, user.password)) {
       return await this.gerarToken(user);
     }
+    throw new UnauthorizedException();
   }
 
 
