@@ -27,6 +27,8 @@ export class User {
 
   @OneToMany(()=>Post, (post) =>post.user)
   post:Post
+    comments: any;
+  id: any;
 
 
   @BeforeInsert()

@@ -5,9 +5,9 @@ import { SnakeNamingStrategy } from "typeorm-naming-strategies";
 export class TypeOrmConfigService implements TypeOrmOptionsFactory{
     createTypeOrmOptions(): TypeOrmModuleOptions{
         return{
-            database:'connect-world',
+            database:'db-name',
             username:'postgres',
-            password:'dn132429',
+            password:'123456789',
             host:'localhost',
             port:5432,
             synchronize:true,

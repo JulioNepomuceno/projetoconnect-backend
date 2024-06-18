@@ -24,5 +24,6 @@ export class Post {
     @ManyToOne(()=>User, (user) => user.post)
     @JoinColumn({name:'id_user'})
     user:User;
+    comments: any;
   
 }
