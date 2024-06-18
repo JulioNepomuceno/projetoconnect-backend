@@ -22,11 +22,11 @@ export class Comment {
   @Column({ name: 'id_post' })
   id_post: number;
 
-  @ManyToOne(() => User, (user) => user.comments)
-  @JoinColumn({ name: 'id_user' })
-  user: User;
+  @ManyToOne(()=>User, (user) => user.comment)
+  @JoinColumn({name:'id_user'})
+  user:User;
 
-  @ManyToOne(() => Post, (post) => post.comments)
+  @ManyToOne(() => Post, (post) => post.comment)
   @JoinColumn({ name: 'id_post' })
   post: Post;
 }

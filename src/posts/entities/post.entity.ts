@@ -1,3 +1,4 @@
+import { Comment } from "src/comments/entities/comment.entity";
 import { User } from "src/users/entities/user.entity";
 import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
@@ -24,6 +25,8 @@ export class Post {
     @ManyToOne(()=>User, (user) => user.post)
     @JoinColumn({name:'id_user'})
     user:User;
-    comments: any;
+
+    @OneToMany(()=>Comment,(comment) => comment.post)
+    comment: Comment;
   
 }

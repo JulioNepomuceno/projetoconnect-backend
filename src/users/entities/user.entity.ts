@@ -1,6 +1,7 @@
 import { BeforeInsert, Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
-import * as bcrypt from 'bcrypt';
 import { Post } from 'src/posts/entities/post.entity';
+import { Comment } from 'src/comments/entities/comment.entity';
+import * as bcrypt from 'bcrypt';
 
 @Entity()
 export class User {
@@ -27,8 +28,10 @@ export class User {
 
   @OneToMany(()=>Post, (post) =>post.user)
   post:Post
-    comments: any;
-  id: any;
+
+  @OneToMany(()=> Comment, (comment) => comment.user)
+  comment: Comment;
+  
 
 
   @BeforeInsert()
